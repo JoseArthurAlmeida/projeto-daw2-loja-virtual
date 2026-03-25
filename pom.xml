@@ -5,14 +5,14 @@
 	<artifactId>crud-jpa-template</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<properties>
-		<maven.compiler.source>11</maven.compiler.source>
-		<maven.compiler.target>11</maven.compiler.target>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<hibernate.version>6.6.26.Final</hibernate.version>
-		<eclipselink.version>4.0.7</eclipselink.version>
-		<postgresql.driver.version>42.7.7</postgresql.driver.version>
-		<mysql.driver.version>9.4.0</mysql.driver.version>
-		<maven.shade.plugin.version>3.6.1</maven.shade.plugin.version>
+		<hibernate.version>7.2.7.Final</hibernate.version>
+		<eclipselink.version>4.0.9</eclipselink.version>
+		<postgresql.driver.version>42.7.10</postgresql.driver.version>
+		<mysql.driver.version>9.6.0</mysql.driver.version>
+		<maven.shade.plugin.version>3.6.0</maven.shade.plugin.version>
 	</properties>
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/jakarta.platform/jakarta.jakartaee-api -->
@@ -24,13 +24,13 @@
 		</dependency>
 		<!-- Implementação do JPA: Hibernate -->
 		<dependency>
-			<groupId>org.hibernate</groupId>
+			<groupId>org.hibernate.orm</groupId>
 			<artifactId>hibernate-core</artifactId>
 			<version>${hibernate.version}</version>
 		</dependency>
 		<!-- Pool de conexões com o banco de dados - Hibernate <-> c3p0 -->
 		<dependency>
-			<groupId>org.hibernate</groupId>
+			<groupId>org.hibernate.orm</groupId>
 			<artifactId>hibernate-c3p0</artifactId>
 			<version>${hibernate.version}</version>
 		</dependency>
@@ -63,12 +63,12 @@
 			<plugin>
 				<!--
 					Plugin que habilita mecanismo do Hibernate para fazer com que o "Lazy loading" funcione corretamente.
-					Referência1: https://docs.jboss.org/hibernate/orm/6.6/userguide/html_single/Hibernate_User_Guide.html#tooling-maven
-					Referência2: https://docs.jboss.org/hibernate/orm/6.6/userguide/html_single/Hibernate_User_Guide.html#tooling-maven-enhancement
-					Referência3: https://docs.jboss.org/hibernate/orm/6.6/userguide/html_single/Hibernate_User_Guide.html#BytecodeEnhancement-lazy-loading
+					Referência1: https://docs.hibernate.org/orm/7.2/userguide/html_single/#tooling-maven
+					Referência2: https://docs.hibernate.org/orm/7.2/userguide/html_single/#tooling-maven-enhancement
+					Referência3: https://docs.hibernate.org/orm/7.2/userguide/html_single/#BytecodeEnhancement-lazy-loading
 				-->
-				<groupId>org.hibernate.orm.tooling</groupId>
-				<artifactId>hibernate-enhance-maven-plugin</artifactId>
+				<groupId>org.hibernate.orm</groupId>
+				<artifactId>hibernate-maven-plugin</artifactId>
 				<version>${hibernate.version}</version>
 				<executions>
 					<execution>
