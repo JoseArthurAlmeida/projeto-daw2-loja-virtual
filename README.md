@@ -12,4 +12,6 @@ disciplina de Desenvolvimento de Aplicações Web 2.
 O projeto inclui:
 
 - **Esquema Conceitual**
-  <img src="docs/modelagens/conceitual-projeto-daw2.png">
+  ![Esquema Conceitual](docs/modelagens/conceitual-projeto-daw2.png)
+- **Esquema Lógico**
+  ![Esquema Lógico](docs/modelagens/logico-projeto-daw2.png)
