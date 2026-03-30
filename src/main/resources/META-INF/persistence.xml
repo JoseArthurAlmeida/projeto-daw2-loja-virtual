@@ -8,6 +8,7 @@
 
 		<!-- TODO: Adicionar as entidades que vocês criaram -->
 		<!-- <class>br.edu.ifpb.es.daw.entities.Book</class> -->
+		 <class>br.edu.ifpb.es.daw.entities.Produto</class>
 
 		<properties>
 
@@ -15,9 +16,9 @@
 			<!--
 			 -->
 			<property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver" />
-			<property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/daw" />
-			<property name="jakarta.persistence.jdbc.user" value="daw" />
-			<property name="jakarta.persistence.jdbc.password" value="daw" />
+			<property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/loja_virtual_daw2" />
+			<property name="jakarta.persistence.jdbc.user" value="postgres" />
+			<property name="jakarta.persistence.jdbc.password" value="123456" />
 			<!-- /Database PostgreSQL-->
 
 			<!-- HIBERNATE -->
