@@ -15,3 +15,8 @@ O projeto inclui:
   ![Esquema Conceitual](docs/modelagens/conceitual-projeto-daw2.png)
 - **Esquema Lógico**
   ![Esquema Lógico](docs/modelagens/logico-projeto-daw2.png)
+
+## Como subir o container Docker do Banco de dados
+````shell
+docker-compose up -d
+````
