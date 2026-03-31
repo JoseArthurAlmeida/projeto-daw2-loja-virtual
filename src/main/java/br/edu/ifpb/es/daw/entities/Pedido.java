@@ -20,7 +20,7 @@ public class Pedido {
     private BigDecimal valor;
 
     @Enumerated(EnumType.STRING)
-    @Column(length = 50)
+    @Column(nullable = false, length = 50)
     private StatusPedido status;
 
     public Pedido() {
