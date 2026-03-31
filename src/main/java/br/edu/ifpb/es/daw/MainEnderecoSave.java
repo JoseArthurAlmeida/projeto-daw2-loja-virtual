@@ -17,7 +17,7 @@ public class MainEnderecoSave {
             endereco.setNumero("157");
             endereco.setBairro("Usina");
             endereco.setCidade("Esperança");
-            endereco.setCep(58135000);
+            endereco.setCep("58135000");
             endereco.setEstado("Paraiba");
             endereco.setComplemento("Proximo a lagoa");
 
