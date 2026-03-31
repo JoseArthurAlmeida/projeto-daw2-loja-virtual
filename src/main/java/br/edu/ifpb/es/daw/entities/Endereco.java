@@ -18,7 +18,7 @@ public class Endereco {
     private String numero;
 
     @Column(nullable = false, length = 20)
-    private Integer cep;
+    private String cep;
 
     @Column(length = 255)
     private String complemento;
@@ -47,9 +47,9 @@ public class Endereco {
 
     public void setNumero(String numero) { this.numero = numero; }
 
-    public Integer getCep() { return cep; }
+    public String getCep() { return cep; }
 
-    public void setCep(Integer cep) { this.cep = cep; }
+    public void setCep(String cep) { this.cep = cep; }
 
     public String getComplemento() { return complemento; }
 
