@@ -20,3 +20,5 @@ O projeto inclui:
 ````shell
 docker-compose up -d
 ````
+## Como parar o container
+docker-compose down
