@@ -14,7 +14,10 @@ public class Usuario {
     @Column(nullable = false, length = 255)
     private String nome;
 
-    @Column(nullable = false, unique = true, length = 255)
+   // @Column(nullable = false, unique = true, length = 255) => com retrição de email unico
+    //private String email;
+
+    @Column(nullable = false, length = 255)
     private String email;
 
     @Column(nullable = false, length = 255)
