@@ -8,10 +8,12 @@
 
 		<!-- TODO: Adicionar as entidades que vocês criaram -->
 		<!-- <class>br.edu.ifpb.es.daw.entities.Book</class> -->
-		 <class>br.edu.ifpb.es.daw.entities.Produto</class>
+		<class>br.edu.ifpb.es.daw.entities.Produto</class>
 		<class>br.edu.ifpb.es.daw.entities.Usuario</class>
 		<class>br.edu.ifpb.es.daw.entities.Endereco</class>
 		<class>br.edu.ifpb.es.daw.entities.Avaliacao</class>
+		<class>br.edu.ifpb.es.daw.entities.Pedido</class>
+		<class>br.edu.ifpb.es.daw.entities.Categoria</class>
 
 		<properties>
 
