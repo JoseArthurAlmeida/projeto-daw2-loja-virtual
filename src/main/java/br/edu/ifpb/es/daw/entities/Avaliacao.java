@@ -16,7 +16,7 @@ public class Avaliacao {
     @Column(nullable = false)
     private Integer nota;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT", nullable = false)
     private String comentario;
 
     @Column(name = "data_avaliacao", nullable = false, updatable = false)
