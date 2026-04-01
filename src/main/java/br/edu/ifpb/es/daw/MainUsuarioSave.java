@@ -6,6 +6,8 @@ import br.edu.ifpb.es.daw.entities.Usuario;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
+import java.util.UUID;
+
 public class MainUsuarioSave {
     public static void main(String[] args) throws DawException{
         try(EntityManagerFactory emf = Persistence.createEntityManagerFactory("daw")){
@@ -14,7 +16,7 @@ public class MainUsuarioSave {
             Usuario usuario = new Usuario();
 
             usuario.setNome("Denis");
-            usuario.setEmail("denis@gmail.com");
+            usuario.setEmail("denis"+ UUID.randomUUID().toString().substring(0, 8) + "@gmail.com");
             usuario.setSenha("12345");
 
             System.out.println("Antes de salvar: " + usuario);

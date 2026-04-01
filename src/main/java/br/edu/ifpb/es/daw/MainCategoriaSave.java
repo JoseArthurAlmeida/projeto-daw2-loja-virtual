@@ -14,7 +14,7 @@ public class MainCategoriaSave {
             CategoriaDAO dao = new CategoriaDAOImpl(emf);
             Categoria categoria = new Categoria();
 
-            categoria.setNome("Processadores");
+            categoria.setNome("Processadores " + System.nanoTime());
 
             System.out.println("Antes de salvar: " + categoria);
 
