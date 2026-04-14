@@ -28,6 +28,7 @@ public class Produto {
     @Column(nullable = false)
     private Integer quantidade;
 
+    @Column(name = "url_imagem")
     private String urlImagem;
 
     @Column(name = "criado_em", updatable = false)
