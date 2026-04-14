@@ -22,6 +22,10 @@ public class Avaliacao {
     @Column(name = "data_avaliacao", nullable = false, updatable = false)
     private LocalDateTime dataAvaliacao;
 
+    @ManyToOne
+    @JoinColumn(name = "produto_id", nullable = false)
+    private Produto produto;
+
     public Avaliacao() {
     }
 
@@ -40,6 +44,14 @@ public class Avaliacao {
     public LocalDateTime getDataAvaliacao() { return dataAvaliacao; }
 
     public void setDataAvaliacao(LocalDateTime dataAvaliacao) { this.dataAvaliacao = dataAvaliacao; }
+
+    public Produto getProduto() {
+        return produto;
+    }
+
+    public void setProduto(Produto produto) {
+        this.produto = produto;
+    }
 
     @Override
     public int hashCode() {
