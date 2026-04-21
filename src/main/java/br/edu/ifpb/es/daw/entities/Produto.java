@@ -2,6 +2,8 @@ package br.edu.ifpb.es.daw.entities;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.*;
@@ -26,10 +28,22 @@ public class Produto {
     @Column(nullable = false)
     private Integer quantidade;
 
+    @Column(name = "url_imagem")
     private String urlImagem;
 
     @Column(name = "criado_em", updatable = false)
     private LocalDateTime criadoEm;
+
+    @ManyToMany
+    @JoinTable(
+            name = "categoria_produto",
+            joinColumns = @JoinColumn(name = "produto_id"),
+            inverseJoinColumns = @JoinColumn(name = "categoria_id")
+    )
+    private List<Categoria> categorias = new ArrayList<>();
+
+    @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Avaliacao> avaliacoes = new ArrayList<>();
 
     public Produto() {
     }
@@ -88,6 +102,22 @@ public class Produto {
 
     public void setCriadoEm(LocalDateTime criadoEm) {
         this.criadoEm = criadoEm;
+    }
+
+    public List<Categoria> getCategorias() {
+        return categorias;
+    }
+
+    public void setCategorias(List<Categoria> categorias) {
+        this.categorias = categorias;
+    }
+
+    public List<Avaliacao> getAvaliacoes() {
+        return avaliacoes;
+    }
+
+    public void setAvaliacoes(List<Avaliacao> avaliacoes) {
+        this.avaliacoes = avaliacoes;
     }
 
     @Override

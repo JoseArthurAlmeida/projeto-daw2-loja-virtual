@@ -3,12 +3,7 @@ package br.edu.ifpb.es.daw.entities;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "itens_pedido")
@@ -23,6 +18,14 @@ public class ItemPedido {
 
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal preco;
+
+    @ManyToOne
+    @JoinColumn(name = "pedido_id", nullable = false)
+    private Pedido pedido;
+
+    @ManyToOne
+    @JoinColumn(name = "produto_id", nullable = false)
+    private Produto produto;
 
     public ItemPedido() {
     }
@@ -49,6 +52,22 @@ public class ItemPedido {
 
     public void setPreco(BigDecimal preco) {
         this.preco = preco;
+    }
+
+    public Pedido getPedido() {
+        return pedido;
+    }
+
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
+    }
+
+    public Produto getProduto() {
+        return produto;
+    }
+
+    public void setProduto(Produto produto) {
+        this.produto = produto;
     }
 
     @Override
