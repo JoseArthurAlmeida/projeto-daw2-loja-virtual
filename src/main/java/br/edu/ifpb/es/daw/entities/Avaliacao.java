@@ -26,6 +26,10 @@ public class Avaliacao {
     @JoinColumn(name = "produto_id", nullable = false)
     private Produto produto;
 
+    @ManyToOne
+    @JoinColumn(name = "usuario_id", nullable = false)
+    private Usuario usuario;
+
     public Avaliacao() {
     }
 
@@ -51,6 +55,14 @@ public class Avaliacao {
 
     public void setProduto(Produto produto) {
         this.produto = produto;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     @Override

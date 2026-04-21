@@ -1,5 +1,7 @@
 package br.edu.ifpb.es.daw.entities;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import jakarta.persistence.*;
 
@@ -20,6 +22,15 @@ public class Usuario {
     @Column(nullable = false, length = 255)
     private String senha;
 
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Endereco> enderecos = new ArrayList<>();
+
+    @OneToMany(mappedBy = "usuario")
+    private List<Pedido> pedidos = new ArrayList<>();
+
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private List<Avaliacao> avaliacoes = new ArrayList<>();
+
     public Usuario() {
     }
 
@@ -38,6 +49,18 @@ public class Usuario {
     public String getSenha() { return senha; }
 
     public void setSenha(String senha) { this.senha = senha; }
+
+    public List<Endereco> getEnderecos() { return enderecos; }
+
+    public void setEnderecos(List<Endereco> enderecos) { this.enderecos = enderecos; }
+
+    public List<Pedido> getPedidos() { return pedidos; }
+
+    public void setPedidos(List<Pedido> pedidos) { this.pedidos = pedidos; }
+
+    public List<Avaliacao> getAvaliacoes() { return avaliacoes; }
+
+    public void setAvaliacoes(List<Avaliacao> avaliacoes) { this.avaliacoes = avaliacoes; }
 
     @Override
     public int hashCode() { return Objects.hash(id); }

@@ -32,6 +32,10 @@ public class Endereco {
     @Column(nullable = false, length = 50)
     private String estado;
 
+    @ManyToOne
+    @JoinColumn(name = "usuario_id", nullable = false)
+    private Usuario usuario;
+
     public Endereco() {
     }
 
@@ -66,6 +70,10 @@ public class Endereco {
     public String getEstado() { return estado; }
 
     public void setEstado(String estado) { this.estado = estado; }
+
+    public Usuario getUsuario() { return usuario; }
+
+    public void setUsuario(Usuario usuario) { this.usuario = usuario; }
 
     @Override
     public int hashCode() {

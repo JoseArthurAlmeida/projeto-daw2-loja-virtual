@@ -2,6 +2,7 @@ package br.edu.ifpb.es.daw;
 
 import br.edu.ifpb.es.daw.dao.UsuarioDAO;
 import br.edu.ifpb.es.daw.dao.impl.UsuarioDAOImpl;
+import br.edu.ifpb.es.daw.entities.Endereco;
 import br.edu.ifpb.es.daw.entities.Usuario;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -18,6 +19,18 @@ public class MainUsuarioSave {
             usuario.setNome("Denis");
             usuario.setEmail("denis"+ UUID.randomUUID().toString().substring(0, 8) + "@gmail.com");
             usuario.setSenha("12345");
+
+            Endereco endereco = new Endereco();
+            endereco.setRua("Passa nada");
+            endereco.setNumero("157");
+            endereco.setBairro("Usina");
+            endereco.setCidade("Esperança");
+            endereco.setCep("58135000");
+            endereco.setEstado("Paraiba");
+            endereco.setComplemento("Proximo a lagoa");
+
+            usuario.getEnderecos().add(endereco);
+            endereco.setUsuario(usuario);
 
             System.out.println("Antes de salvar: " + usuario);
 
