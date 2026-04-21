@@ -14,12 +14,23 @@ public class MainCategoriaDeleteAll {
         try (EntityManagerFactory emf = Persistence.createEntityManagerFactory("daw")) {
 
             CategoriaDAO dao = new CategoriaDAOImpl(emf);
+
+            System.out.println("Buscando categorias...");
             List<Categoria> categorias = dao.getAll();
+            int deletados = 0;
 
             for (Categoria categoria : categorias) {
-                dao.delete(categoria.getId());
+                try {
+                    dao.delete(categoria.getId());
+                    deletados++;
+                } catch (Exception e) {
+                    System.err.println("Não foi possível deletar a Categoria ID " + categoria.getId() + " (Pode ter Produtos usando ela).");
+                }
             }
 
+            System.out.println("--- SUCESSO ---");
+            System.out.println("Total de categorias encontradas: " + categorias.size());
+            System.out.println("Total de categorias deletadas: " + deletados);
         }
     }
 }

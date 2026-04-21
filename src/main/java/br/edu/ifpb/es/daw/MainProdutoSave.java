@@ -32,6 +32,7 @@ public class MainProdutoSave {
 			produto1.setUrlImagem(String.format("https://exemplo.com/%s_arc.jpg", UUID.randomUUID()));
 
 			produto1.getCategorias().add(categoria);
+			categoria.getProdutos().add(produto1);
 
 			Produto produto2 = new Produto();
 			produto2.setNome("Processador Core i9 " + System.nanoTime());
@@ -41,11 +42,18 @@ public class MainProdutoSave {
 			produto2.setUrlImagem(String.format("https://exemplo.com/%s_i9.jpg", UUID.randomUUID()));
 
 			produto2.getCategorias().add(categoria);
+			categoria.getProdutos().add(produto2);
 
 			produtoDAO.save(produto1);
 			produtoDAO.save(produto2);
 
-			System.out.println("Categoria criada e dois produtos associados a ela");
+			System.out.println("--- SUCESSO ---");
+			System.out.println("Categoria ID: " + categoria.getId() + " | Nome: " + categoria.getNome() + " | Possui: " + categoria.getProdutos().size() + " produtos.");
+			System.out.println("Produto 1 ID: " + produto1.getId() + " | Nome: " + produto1.getNome());
+			System.out.println("Produto 2 ID: " + produto2.getId() + " | Nome: " + produto2.getNome());
+
+			System.out.println("Qtd de categorias no Produto 1: " + produto1.getCategorias().size());
+			System.out.println("Qtd de categorias no Produto 2: " + produto2.getCategorias().size());
 		}
 	}
 }

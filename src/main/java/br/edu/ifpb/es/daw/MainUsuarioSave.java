@@ -36,7 +36,10 @@ public class MainUsuarioSave {
 
             dao.save(usuario);
 
-            System.out.println("Depois de salvar: " + usuario);
+            System.out.println("--- SUCESSO ---");
+            System.out.println("Usuário ID: " + usuario.getId() + " | Nome: " + usuario.getNome());
+            System.out.println("Endereço salvo via Cascade!");
+            System.out.println("Endereço ID: " + usuario.getEnderecos().get(0).getId() + " | Rua: " + usuario.getEnderecos().get(0).getRua());
         }
     }
 }

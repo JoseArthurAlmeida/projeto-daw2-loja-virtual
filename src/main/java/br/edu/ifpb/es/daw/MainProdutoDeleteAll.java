@@ -11,12 +11,25 @@ import java.util.List;
 public class MainProdutoDeleteAll {
 
 	public static void main(String[] args) throws DawException {
-		try(EntityManagerFactory emf = Persistence.createEntityManagerFactory("daw")) {
+		try (EntityManagerFactory emf = Persistence.createEntityManagerFactory("daw")) {
 			ProdutoDAO dao = new ProdutoDAOImpl(emf);
+
+			System.out.println("Buscando produtos...");
 			List<Produto> produtos = dao.getAll();
+			int deletados = 0;
+
 			for (Produto produto : produtos) {
-				dao.delete(produto.getId());
+				try {
+					dao.delete(produto.getId());
+					deletados++;
+				} catch (Exception e) {
+					System.err.println("Não foi possível deletar o Produto ID " + produto.getId() + " (Pode estar vinculado a Itens ou Avaliações).");
+				}
 			}
+
+			System.out.println("--- SUCESSO ---");
+			System.out.println("Total de produtos encontrados: " + produtos.size());
+			System.out.println("Total de produtos deletados: " + deletados);
 		}
 	}
 

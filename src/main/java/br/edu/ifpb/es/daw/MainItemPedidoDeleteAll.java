@@ -14,12 +14,23 @@ public class MainItemPedidoDeleteAll {
         try (EntityManagerFactory emf = Persistence.createEntityManagerFactory("daw")) {
 
             ItemPedidoDAO dao = new ItemPedidoDAOImpl(emf);
+
+            System.out.println("Buscando itens de pedido...");
             List<ItemPedido> itens = dao.getAll();
+            int deletados = 0;
 
             for (ItemPedido item : itens) {
-                dao.delete(item.getId());
+                try {
+                    dao.delete(item.getId());
+                    deletados++;
+                } catch (Exception e) {
+                    System.err.println("Não foi possível deletar o ItemPedido ID " + item.getId());
+                }
             }
 
+            System.out.println("--- SUCESSO ---");
+            System.out.println("Total de itens encontrados: " + itens.size());
+            System.out.println("Total de itens deletados: " + deletados);
         }
     }
 }
