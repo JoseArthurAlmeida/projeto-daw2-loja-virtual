@@ -33,7 +33,12 @@ public class PedidoDAOImpl extends AbstractDAOImpl<Pedido, Long> implements Pedi
     @Override
     public Pedido findByIdFetchItens(Long id) throws PersistenciaDawException {
         try (EntityManager em = getEntityManager()) {
-            String jpql = "SELECT p FROM Pedido p JOIN FETCH p.itens WHERE p.id = :id";
+            String jpql = """
+                   SELECT DISTINCT p
+                   FROM Pedido p
+                       JOIN FETCH p.itens i
+                       JOIN FETCH i.produto
+                           WHERE p.id = :id""";
 
             TypedQuery<Pedido> query = em.createQuery(jpql, Pedido.class);
 
