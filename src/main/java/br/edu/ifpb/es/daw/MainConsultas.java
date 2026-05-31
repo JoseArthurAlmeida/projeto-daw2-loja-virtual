@@ -4,6 +4,7 @@ import br.edu.ifpb.es.daw.dao.PedidoDAO;
 import br.edu.ifpb.es.daw.dao.UsuarioDAO;
 import br.edu.ifpb.es.daw.dao.impl.PedidoDAOImpl;
 import br.edu.ifpb.es.daw.dao.impl.UsuarioDAOImpl;
+import br.edu.ifpb.es.daw.entities.ItemPedido;
 import br.edu.ifpb.es.daw.entities.Pedido;
 import br.edu.ifpb.es.daw.entities.Usuario;
 import jakarta.persistence.EntityManagerFactory;
@@ -41,6 +42,23 @@ public class MainConsultas {
             }
 
             // [2.5] Teste da Consulta de JOIN FETCH (Pedido com itens)
+            System.out.println("\n[2.5] Teste da Consulta de JOIN FETCH (Pedido com Itens em LAZY)");
+            List<Pedido> pedidosDb = pedidoDAO.getAll();
+            if (!pedidosDb.isEmpty()) {
+                Long idPedidoTeste = pedidosDb.get(0).getId(); // Pega o ID do primeiro pedido
+
+                Pedido pedidoComItens = pedidoDAO.findByIdFetchItens(idPedidoTeste);
+                if (pedidoComItens != null) {
+                    System.out.println("Pedido encontrado (ID " + pedidoComItens.getId() + ").");
+                    System.out.println("Listando itens usando a coleção que veio pelo JOIN FETCH:");
+
+                    for (ItemPedido item : pedidoComItens.getItens()) {
+                        System.out.println(" -> " + item.getQuantidade() + "x Produto: " + item.getProduto().getNome());
+                    }
+                }
+            } else {
+                System.out.println("Nenhum pedido encontrado no banco de dados.");
+            }
         }
 
         System.out.println("======= FIM DOS TESTES =======");

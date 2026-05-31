@@ -9,4 +9,7 @@ public interface PedidoDAO extends DAO<Pedido, Long> {
 
     // [2.2] Consulta parametrizada com uma Entidade
     List<Pedido> findByUsuario(Usuario usuario) throws PersistenciaDawException;
+
+    // [2.5] Consulta com JOIN FETCH em um relacionamento LAZY
+    Pedido findByIdFetchItens(Long id) throws PersistenciaDawException;
 }

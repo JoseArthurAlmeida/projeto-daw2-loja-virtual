@@ -4,10 +4,7 @@ import br.edu.ifpb.es.daw.dao.PedidoDAO;
 import br.edu.ifpb.es.daw.dao.PersistenciaDawException;
 import br.edu.ifpb.es.daw.entities.Pedido;
 import br.edu.ifpb.es.daw.entities.Usuario;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.PersistenceException;
-import jakarta.persistence.TypedQuery;
+import jakarta.persistence.*;
 
 import java.util.List;
 
@@ -30,6 +27,24 @@ public class PedidoDAOImpl extends AbstractDAOImpl<Pedido, Long> implements Pedi
         } catch (PersistenceException pe) {
             pe.printStackTrace();
             throw new PersistenciaDawException("Ocorreu algum erro ao tentar recuperar os pedidos de um usuário", pe);
+        }
+    }
+
+    @Override
+    public Pedido findByIdFetchItens(Long id) throws PersistenciaDawException {
+        try (EntityManager em = getEntityManager()) {
+            String jpql = "SELECT p FROM Pedido p JOIN FETCH p.itens WHERE p.id = :id";
+
+            TypedQuery<Pedido> query = em.createQuery(jpql, Pedido.class);
+
+            query.setParameter("id", id);
+            return query.getSingleResult();
+
+        } catch (NoResultException e) {
+            return null;
+        } catch (PersistenceException pe) {
+            pe.printStackTrace();
+            throw new PersistenciaDawException("Ocorreu algum erro ao tentar recuperar os itens de um pedido", pe);
         }
     }
 }
