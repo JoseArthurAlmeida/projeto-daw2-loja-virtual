@@ -1,15 +1,21 @@
 package br.edu.ifpb.es.daw;
 
+import br.edu.ifpb.es.daw.dao.AvaliacaoDAO;
 import br.edu.ifpb.es.daw.dao.PedidoDAO;
+import br.edu.ifpb.es.daw.dao.ProdutoDAO;
 import br.edu.ifpb.es.daw.dao.UsuarioDAO;
+import br.edu.ifpb.es.daw.dao.impl.AvaliacaoDAOImpl;
 import br.edu.ifpb.es.daw.dao.impl.PedidoDAOImpl;
+import br.edu.ifpb.es.daw.dao.impl.ProdutoDAOImpl;
 import br.edu.ifpb.es.daw.dao.impl.UsuarioDAOImpl;
 import br.edu.ifpb.es.daw.entities.ItemPedido;
 import br.edu.ifpb.es.daw.entities.Pedido;
+import br.edu.ifpb.es.daw.entities.Produto;
 import br.edu.ifpb.es.daw.entities.Usuario;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class MainConsultas {
@@ -19,12 +25,28 @@ public class MainConsultas {
 
             UsuarioDAO usuarioDAO = new UsuarioDAOImpl(emf);
             PedidoDAO pedidoDAO = new PedidoDAOImpl(emf);
+            ProdutoDAO produtoDAO = new ProdutoDAOImpl(emf);
+            AvaliacaoDAO avaliacaoDAO = new AvaliacaoDAOImpl(emf);
 
-            // [2.1] Teste da Consulta de Estoque Crítico
+            System.out.println("\n[2.1] Teste de Estoque Crítico (Produtos com 5 ou menos no estoque)");
+            List<Produto> estoqueCritico = produtoDAO.findProdutosComEstoqueAbaixoDe(5);
+            for (Produto p : estoqueCritico) {
+                System.out.println(" -> ALERTA: " + p.getNome() + " | Qtd: " + p.getQuantidade());
+            }
 
-            // [2.3] Teste da Consulta de Faixa de Preço
+            System.out.println("\n[2.3] Teste de Faixa de Preço (Entre R$ 100 e R$ 1000)");
+            List<Produto> porPreco = produtoDAO.findByFaixaPreco(new BigDecimal("100.00"), new BigDecimal("1000.00"));
+            for (Produto p : porPreco) {
+                System.out.println(" -> Filtro: " + p.getNome() + " | Preço: R$ " + p.getPreco());
+            }
 
-            // [2.4] Teste da Consulta de Média de Notas na Avaliação
+            System.out.println("\n[2.4] Teste de Média de Notas por Produto");
+            List<Produto> todosProdutos = produtoDAO.getAll();
+            if(!todosProdutos.isEmpty()) {
+                Produto p = todosProdutos.get(0);
+                Double media = avaliacaoDAO.calcularMediaNotasPorProduto(p.getId());
+                System.out.println(" -> Produto: " + p.getNome() + " | Média de Estrelas: " + (media != null ? media : "Sem avaliações"));
+            }
 
             // [2.2] Teste da Consulta de Pedidos por Usuário
             System.out.println("\n[2.2] Teste da Consulta de Pedidos por Usuário (Parâmetro Entidade)");
